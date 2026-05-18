@@ -63,4 +63,9 @@ def upload():
     return jsonify({'video_id': response['id']})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=10000)
+    # Pour un débogage local, on active le mode debug
+    app.run(host='0.0.0.0', port=10000, debug=True)
+
+# Pour la production avec Gunicorn, on force la propagation des exceptions
+# afin qu'elles soient visibles dans les logs Render.
+app.config['PROPAGATE_EXCEPTIONS'] = True
